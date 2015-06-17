@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>co.edu.uniandes.ecos.statusquo</groupId>
+        <artifactId>Experimento-1-2</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <groupId>co.edu.uniandes.ecos.statusquo</groupId>
+    <artifactId>Experimento-1-2-ear</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>ear</packaging>
+
+    <name>Experimento-1-2-ear</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    
+    <dependencies>
+        <!-- CAPA DATOS Y NEGOCIO-->
+        <dependency>
+            <groupId>co.edu.uniandes.ecos.statusquo</groupId>
+            <artifactId>Experimento-1-2-ejb</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>ejb</type>
+        </dependency>
+        <!--CAPA WEB-->
+        <dependency>
+            <groupId>co.edu.uniandes.ecos.statusquo</groupId>
+            <artifactId>Experimento-1-2-web</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>war</type>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>Experimento-1-2-ear</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.9</version>
+                <configuration>
+                    <version>6</version>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                    <defaultLibBundleDir>lib</defaultLibBundleDir>
+                    <displayName>Experimento-1-2-ear</displayName>
+                    <generateApplicationXml>true</generateApplicationXml>
+                    <modules>
+                        <ejbModule>
+                            <groupId>co.edu.uniandes.ecos.statusquo</groupId>
+                            <artifactId>Experimento-1-2-ejb</artifactId>
+                            <bundleFileName>ejb.jar</bundleFileName>
+                            <bundleDir>/</bundleDir>
+                        </ejbModule>
+                        <webModule>
+                            <groupId>co.edu.uniandes.ecos.statusquo</groupId>
+                            <artifactId>Experimento-1-2-web</artifactId>
+                            <bundleFileName>web.war</bundleFileName>
+                            <bundleDir>/</bundleDir>
+                            <contextRoot>/experimento-1-2</contextRoot>
+                        </webModule>
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
