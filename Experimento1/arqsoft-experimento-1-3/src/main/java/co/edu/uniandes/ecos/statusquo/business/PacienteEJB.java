@@ -34,7 +34,12 @@ public class PacienteEJB {
     public Paciente consultarIdentificacion(Long identificacion) throws Exception {
         final HashMap<String, Object> params = new HashMap<String, Object>();
         params.put("identificacion", identificacion);
-        return facade.findByNamedQuery("Pacientes.findByIdentificacion", params).get(0);
+        List<Paciente> resultado = facade.findByNamedQuery("Paciente.findByIdentificacion", params);
+        if (resultado != null && resultado.size() >0 ) {
+        	return resultado.get(0);
+        } else {
+        	return null;
+        }
     }
 
     public void save(final Paciente entidad) throws Exception {
